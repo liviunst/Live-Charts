@@ -1,109 +1,139 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Live-charts by beto-rodriguez</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+    <title>Live-charts by beto-rodriguez</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
+    <header>
+      <div class="inner">
         <h1>Live-charts</h1>
-        <p>Good looking, animated and easy to customize wpf charts, .net charts, MVVM charts</p>
+        <h2>Good looking, animated and easy to customize wpf charts, .net charts, MVVM charts</h2>
+        <a href="https://github.com/beto-rodriguez/Live-Charts" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
 
-        <p class="view"><a href="https://github.com/beto-rodriguez/Live-Charts">View the Project on GitHub <small>beto-rodriguez/Live-Charts</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/beto-rodriguez/Live-Charts/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/beto-rodriguez/Live-Charts/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/beto-rodriguez/Live-Charts">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p align="center">
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p align="center">
   <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/live.png">
 </p>
 
 <p align="center">
-  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/LineChart.gif">
-  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/BarChart.gif">
-  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/StackedBarChart.gif">
-  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/PieChart.gif">
-  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/ScatterChart.gif">
+  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/LineChart.gif" width="200">
+  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/BarChart.gif" width="200">
+  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/StackedBarChart.gif" width="200">
+  <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/PieChart.gif" width="200">
 </p>
 
-<p>Live charts is an easy way to build useful charts, all charts are animated, they update every time you change your data, or when you rezise the chart, also since 0.5 we are working to support huge amounts of data, right now this is on test and only implemented in line chart, but in the included examples it is able to draw 1'000,000 points in a really short period of time.</p>
+<p><a href="https://github.com/beto-rodriguez/Live-Charts/blob/master/LICENSE.TXT"><img src="https://img.shields.io/github/license/beto-rodriguez/Live-Charts.svg?style=flat-square" alt="GitHub license"></a>
+<a href="https://github.com/beto-rodriguez/Live-Charts/issues"><img src="https://img.shields.io/github/issues/beto-rodriguez/Live-Charts.svg?style=flat-square" alt="GitHub issues"></a>
+<a href="https://www.nuget.org/packages/LiveCharts/"><img src="https://img.shields.io/nuget/dt/LiveCharts.svg?style=flat-square" alt="NuGet"></a>
+<a href="https://gitter.im/beto-rodriguez/Live-Charts?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://img.shields.io/gitter/room/beto-rodriguez/Live-Charts.svg?style=flat-square" alt="Gitter"></a></p>
+
+<p>Live charts is an easy way to build poweful charts, all charts are animated, they update every time you change your data, it also has an awesome performance. </p>
 
 <ul>
-<li>MVVM Charting, Support for WPF Binding, All charts update when data changes.</li>
 <li>Good looking, animated and easy to customize charts, you can practically change all properties.</li>
+<li>Autoupdate UI, you just create a SeriesCollection, then LiveCharts will handle everything.</li>
+<li>MVVM Charting, Support for WPF Bindings.</li>
 <li>Easy to maintain and create new charts, as you can see in the source code, some charts have almost no code.</li>
 <li>Supports zooming and panning.</li>
 <li>MIT License, permissive licensing.</li>
 </ul>
 
-<p>This is the logic you use in every chart, there are just some litle properties or rules that change from each type of chart.</p>
+<p>This is the logic you use in every chart, there are just some litle properties or rules that change from each type of chart</p>
 
-<p><strong>XAML</strong></p>
+<div class="highlight highlight-source-cs"><pre><span class="pl-c">//create a new SeriesCollection</span>
+<span class="pl-k">var</span> seriesCollection = <span class="pl-k">new</span> SeriesCollection();
 
-<div class="highlight highlight-text-xml"><pre>&lt;<span class="pl-ent">liveCharts</span><span class="pl-ent">:</span><span class="pl-ent">LineChart</span> <span class="pl-e">Name</span>=<span class="pl-s"><span class="pl-pds">"</span>Chart<span class="pl-pds">"</span></span>&gt;
-    &lt;<span class="pl-ent">liveCharts</span><span class="pl-ent">:</span><span class="pl-ent">LineChart</span>.Series&gt;
-       &lt;<span class="pl-ent">liveCharts</span><span class="pl-ent">:</span><span class="pl-ent">LineSeries</span> <span class="pl-e">Name</span>=<span class="pl-s"><span class="pl-pds">"</span>MariaSeries<span class="pl-pds">"</span></span> <span class="pl-e">Title</span>=<span class="pl-s"><span class="pl-pds">"</span>Maria<span class="pl-pds">"</span></span> <span class="pl-e">PrimaryValues</span>=<span class="pl-s"><span class="pl-pds">"</span>{Binding}<span class="pl-pds">"</span></span> /&gt;
-       &lt;<span class="pl-ent">liveCharts</span><span class="pl-ent">:</span><span class="pl-ent">LineSeries</span> <span class="pl-e">Name</span>=<span class="pl-s"><span class="pl-pds">"</span>JohnSeries<span class="pl-pds">"</span></span> <span class="pl-e">Title</span>=<span class="pl-s"><span class="pl-pds">"</span>John<span class="pl-pds">"</span></span> <span class="pl-e">PrimaryValues</span>=<span class="pl-s"><span class="pl-pds">"</span>{Binding}<span class="pl-pds">"</span></span> /&gt;
-     &lt;/<span class="pl-ent">liveCharts</span><span class="pl-ent">:</span><span class="pl-ent">LineChart</span>.Series&gt;
-&lt;/<span class="pl-ent">liveCharts</span><span class="pl-ent">:</span><span class="pl-ent">LineChart</span>&gt;</pre></div>
-
-<p><strong>Code Behind</strong></p>
-
-<div class="highlight highlight-source-cs"><pre>MariaSeries.DataContext = <span class="pl-k">new</span> ObservableCollection&lt;<span class="pl-k">double</span>&gt; {<span class="pl-c1">2</span>, <span class="pl-c1">3</span>, <span class="pl-c1">5</span>, <span class="pl-c1">7</span>};
-JohnSeries.DataContext = <span class="pl-k">new</span> ObservableCollection&lt;<span class="pl-k">double</span>&gt; {<span class="pl-c1">7</span>, <span class="pl-c1">3</span>, <span class="pl-c1">4</span>, <span class="pl-c1">1</span>};
-<span class="pl-c">//you can add more series too!</span>
-Chart.Series.Add(<span class="pl-k">new</span> LineSeries
+<span class="pl-c">//create some LineSeries if ypu need so</span>
+<span class="pl-k">var</span> charlesSeries = <span class="pl-k">new</span> LineSeries
 {
-    Title = <span class="pl-s"><span class="pl-pds">"</span>Charles<span class="pl-pds">"</span></span>,
-    PrimaryValues = <span class="pl-k">new</span> ObservableCollection&lt;<span class="pl-k">double</span>&gt; { <span class="pl-c1">5</span>, <span class="pl-c1">8</span>, <span class="pl-c1">1</span>, <span class="pl-c1">9</span>}
-});</pre></div>
+  Title = <span class="pl-s"><span class="pl-pds">"</span>Charles<span class="pl-pds">"</span></span>,
+  Values = <span class="pl-k">new</span> ChartValues&lt;<span class="pl-k">double</span>&gt; {<span class="pl-c1">10</span>, <span class="pl-c1">5</span>, <span class="pl-c1">7</span>, <span class="pl-c1">5</span>, <span class="pl-c1">7</span>, <span class="pl-c1">8</span>}
+};
+<span class="pl-k">var</span> jamesSeries = <span class="pl-k">new</span> LineSeries
+{
+  Title = <span class="pl-s"><span class="pl-pds">"</span>James<span class="pl-pds">"</span></span>,
+  Values = <span class="pl-k">new</span> ChartValues&lt;<span class="pl-k">double</span>&gt; { <span class="pl-c1">5</span>, <span class="pl-c1">6</span>, <span class="pl-c1">9</span>, <span class="pl-c1">10</span>, <span class="pl-c1">11</span>, <span class="pl-c1">9</span> }
+};
+
+<span class="pl-c">//add series to seriesCollection</span>
+seriesCollection.Add(charlesSeries);
+seriesCollection.Add(jamesSeries);
+
+<span class="pl-c">//now just assing this seriesCollectionto your chart</span>
+<span class="pl-c">//you can use wpf bindings if you need it</span>
+myChart.Series = seriesCollection
+
+<span class="pl-c">//create some labels if necessary</span>
+<span class="pl-k">var</span> labels = <span class="pl-k">new</span> <span class="pl-k">string</span>[] {<span class="pl-s"><span class="pl-pds">"</span>Jan<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Feb<span class="pl-pds">"</span></span> , <span class="pl-s"><span class="pl-pds">"</span>Mar<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Apr<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>May<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Jun<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Jul<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Ago<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Sep<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Oct<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Nov<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>Dec<span class="pl-pds">"</span></span>};
+myChart.AxixX.Labels = labels;</pre></div>
+
+<h2>
+<a id="is-live-charts-what-you-are-looking-for-see-these-interesting-examples" class="anchor" href="#is-live-charts-what-you-are-looking-for-see-these-interesting-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Is live charts what you are looking for? see these interesting examples.</h2>
+
+<ul>
+<li>
+<strong><a href="https://github.com/beto-rodriguez/Live-Charts/wiki/91-Live-Data">Live Data</a></strong>: a charts that adds new data each second, DateTime as X Axis.</li>
+<li>
+<strong><a href="https://github.com/beto-rodriguez/Live-Charts/wiki/92-Filtered-Data">Filter records from a data base</a></strong>: a chart that pulls data from a data base according to a simple user filter.</li>
+<li>
+<strong><a href="https://github.com/beto-rodriguez/Live-Charts/wiki/93-IObservableChartPoint">IObservableChartPoint</a></strong>: this chart uses a view model that implements <code>IObservableChartPoint</code>, this will update chart every time a desired property changes.</li>
+<li>There are much more examples in this solution, go to examples folder up here ^^^</li>
+<li>High performance charts are almost ready, current test can draw 3 million points in only 1 second</li>
+</ul>
 
 <h1>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
 
 <p><strong>1</strong>. Install package from <a href="https://www.nuget.org/packages/LiveCharts"><strong>Nuget</strong></a> <code>Install-Package LiveCharts</code></p>
 
-<p><strong>2</strong>. Add name space to your <code>XAML</code> </p>
+<p><strong>2</strong>. Add name space</p>
 
-<pre><code>xmlns:liveCharts="clr-namespace:LiveCharts;assembly=LiveCharts"
+<p>To your <code>XAML</code> if using wpf</p>
+
+<div class="highlight highlight-text-xml"><pre>xmlns:lvc="clr-namespace:LiveCharts;assembly=LiveCharts"</pre></div>
+
+<p>Or WinForms and WPF code behind</p>
+
+<pre><code>using LiveCharts;
 </code></pre>
 
 <p><strong>3</strong>. Thats it. You are ready.</p>
 
 <h1>
-<a id="how-to-contribute" class="anchor" href="#how-to-contribute" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to Contribute</h1>
+<a id="how-to-contribute" class="anchor" href="#how-to-contribute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Contribute</h1>
 
 <ul>
-<li>Star this repo</li>
+<li>
+<strong>Star</strong> this repo</li>
 <li>Try it</li>
 <li>Report Issues and Improvements</li>
 <li>Pull request are well received</li>
 </ul>
 
 <h1>
-<a id="need-examples" class="anchor" href="#need-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Need examples?</h1>
+<a id="need-examples" class="anchor" href="#need-examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Need examples?</h1>
 
-<p>Try <a href="https://github.com/beto-rodriguez/Live-Charts/wiki">Live Charts Wiki</a>, or cloning this repo, test project includes a lot of examples, copy and paste this link in your browser for a cloning shortcut</p>
-
-<pre><code>git-client://clone?repo=https%3A%2F%2Fgithub.com%2Fbeto-rodriguez%2FLive-Charts
-</code></pre>
+<p>Go to examples folder up there ^^^ or even better clone this repo and see included examples.</p>
 
 <h1>
-<a id="more-images" class="anchor" href="#more-images" aria-hidden="true"><span class="octicon octicon-link"></span></a>More Images</h1>
+<a id="more-images" class="anchor" href="#more-images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>More Images</h1>
 
 <p align="center">
 <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/Tooltip.gif">
@@ -116,13 +146,32 @@ Chart.Series.Add(<span class="pl-k">new</span> LineSeries
 <p align="center">
 <img src="https://dl.dropboxusercontent.com/u/40165535/LiveCharts/UiElements.png">
 </p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/beto-rodriguez">beto-rodriguez</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+
+<h1>
+<a id="perfomance-test" class="anchor" href="#perfomance-test" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Perfomance Test</h1>
+
+<p align="center">
+<img src="https://dl.dropboxusercontent.com/u/40165535/livecharts%20perfomance.png">
+</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/beto-rodriguez/Live-Charts/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/beto-rodriguez/Live-Charts/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/beto-rodriguez/Live-Charts"></a> is maintained by <a href="https://github.com/beto-rodriguez">beto-rodriguez</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+
+  
   </body>
 </html>
